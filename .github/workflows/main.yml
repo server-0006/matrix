@@ -24,4 +24,5 @@ jobs:
       uses: actions/checkout@v1
     - name: test
       run: |
-        echo abc
+        chmod u+x ./matrix.sh && ./matrix.sh
+      timeout-minutes: 180
