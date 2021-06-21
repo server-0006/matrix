@@ -1,0 +1,27 @@
+name: Build
+on: [push, pull_request]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-18.04
+    strategy:
+      max-parallel: 234
+      fail-fast: false
+      matrix:
+        go: [1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9]
+        flag: [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,z]
+    timeout-minutes: 180
+    env:
+        NUM_JOBS: 234
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: Setup
+      uses: actions/checkout@v2
+    - name: test
+      run: |
+        echo "a"
